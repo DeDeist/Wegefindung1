@@ -1,51 +1,7 @@
 #pragma once
 #include "string"
-
-class citys
-{
-
-public:
-
-	citys(int x, int y, std::string n)
-	{
-		set_x_pos(x);
-		set_y_pos(y);
-		set_name(n);
-	}
-
-	void set_x_pos(int x)
-	{
-		x_pos = x;
-	}
-	void set_y_pos(int y)
-	{
-		y_pos = y;
-	}
-	void set_name(std::string n)
-	{
-		name = n;
-
-	}
-
-	int get_x_pos()
-	{
-		return x_pos;
-	}
-	int get_y_pos()
-	{
-		return y_pos;
-	}
-	std::string get_name()
-	{
-		return name;
-	}
-
-
-private:
-	int x_pos;
-	int y_pos;
-	std::string name;
-};
+#include "GUI.h"
+#include "iostream"
 
 
 namespace Project1 {
@@ -57,26 +13,37 @@ namespace Project1 {
 	using namespace System::Drawing;
 	using namespace System::Drawing::Drawing2D;
 	using namespace System::Text;
-	int i = 0;
-	std::string temp = "";
-	wchar_t tempo;
-	
+
 	/// <summary>
 	/// Zusammenfassung für MyForm
 	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 	public:
-		MyForm(void)
+		MyForm(int x)
 		{
+			std::cout << x;
+			
 			InitializeComponent();
+	
 			//
 			//TODO: Konstruktorcode hier hinzufügen.
-			citys Ka(10, 10, "Karlsruhe");
-			Ka.get_name();
+			
 		}
 
-
+	private:
+		void newlable(int x, int y)
+		{
+			std::cout << x;
+		
+		}
+	private:
+		void drawpoint(int x, int y)
+		{
+			Graphics^ graph = MapArea->CreateGraphics();
+			SolidBrush^ brush = gcnew SolidBrush(Color::Red);
+			graph->FillEllipse(brush, x, y, 10, 10);
+		}
 
 	protected:
 		/// <summary>
@@ -323,6 +290,7 @@ namespace Project1 {
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
+			
 		}
 #pragma endregion
 
@@ -333,41 +301,36 @@ namespace Project1 {
 	}
 	private: System::Void StartButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Graphics^ pg = MapArea->CreateGraphics();
-		Pen^ pen1 = gcnew Pen(Color::Black);
-		SolidBrush^ sb1 = gcnew SolidBrush(Color::Red);
-		citys peng(100, 100, "ke");
-		string tempo = peng.get_name();
-		//wchar_t tempo ;
-		//tempo = (wchar_t)peng.get_name().c_str();
+		
+	
 		if (StartBox->SelectedItem == EmptyBox->SelectedItem)
 		{
 			MessageBox::Show("Sie müssen einen Startpunkt auswählen");
 			return;
 		}
 
-		this->StartBox->Items->AddRange(gcnew cli::array< System::Object^  >(1) { L"%s", tempo });
+		this->StartBox->Items->AddRange(gcnew cli::array< System::Object^  >(1) { L"Köln" });
 		this->DestinationBox->Items->AddRange(gcnew cli::array< System::Object^  >(1) { StartBox->SelectedItem });
-		this->DestinationBox->Items->AddRange(gcnew cli::array< System::Object^  >(1) { i });
-
-		while (i < 1000)
-		{
-		pg->DrawLine(pen1, 55 + i, 55 + i, 105, 255);
-		pg->FillEllipse(sb1, peng.get_x_pos(), 50 + i, 10, 10);
+		
+		Graphics^ pg = MapArea->CreateGraphics();
+		Pen^ pen1 = gcnew Pen(Color::Black);
+		SolidBrush^ sb1 = gcnew SolidBrush(Color::Red);
+		
+		pg->DrawLine(pen1, 55 , 55, 105, 255);
+		pg->FillEllipse(sb1,50, 50 , 10, 10);
 		pg->FillEllipse(sb1, 100, 250, 10, 10);
-		label3->Location = System::Drawing::Point(60 + i, 50 + i);
+		label3->Location = System::Drawing::Point(60, 50);
 		this->label3->Text = L"Berlin";
-		i = i + 100;
-		}
-
-
+		
 
 	}
 	private: System::Void StartBox_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) 
 	{
-	
-	
+
+		this->newlable(3, 3);
+		this->drawpoint(60, 60);
 	}
+
 	private: System::Void NewMapDialog_FileOk(System::Object^ sender, System::ComponentModel::CancelEventArgs^ e) 
 	{
 

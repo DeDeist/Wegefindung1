@@ -1,0 +1,5 @@
+﻿  MyForm.cpp
+C:\Users\Ralph\source\repos\Project1\Project1\MyForm.h(340,3): error C2065: "string": nichtdeklarierter Bezeichner
+C:\Users\Ralph\source\repos\Project1\Project1\MyForm.h(340,10): error C2146: Syntaxfehler: Fehlendes ";" vor Bezeichner "tempo"
+C:\Users\Ralph\source\repos\Project1\Project1\MyForm.h(340,1): error C2440: "=": "std::string" kann nicht in "wchar_t" konvertiert werden
+C:\Users\Ralph\source\repos\Project1\Project1\MyForm.h(340,31): message : Kein benutzerdefinierter Konvertierungsoperator verfügbar, der diese Konvertierung durchführen kann, oder der Operator kann nicht aufgerufen werden

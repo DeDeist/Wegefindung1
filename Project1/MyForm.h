@@ -25,7 +25,7 @@ namespace Project1 {
 			std::cout << x;
 			
 			InitializeComponent();
-	
+			InitializeDrwatools();
 			//
 			//TODO: Konstruktorcode hier hinzufügen.
 			
@@ -40,9 +40,8 @@ namespace Project1 {
 	private:
 		void drawpoint(int x, int y)
 		{
-			Graphics^ graph = MapArea->CreateGraphics();
-			SolidBrush^ brush = gcnew SolidBrush(Color::Red);
-			graph->FillEllipse(brush, x, y, 10, 10);
+			
+			this->map_area_graph ->FillEllipse(red_point, x, y, 10, 10);
 		}
 
 	protected:
@@ -71,7 +70,9 @@ namespace Project1 {
 	private: System::Windows::Forms::ErrorProvider^ errorProvider1;
 	private: System::Windows::Forms::ComboBox^ EmptyBox;
 	private: System::Windows::Forms::RichTextBox^ richTextBox1;
-
+	private: Graphics^ map_area_graph;
+	private: Pen^ black_line;
+	private: SolidBrush^ red_point;
 
 
 
@@ -293,7 +294,12 @@ namespace Project1 {
 			
 		}
 #pragma endregion
-
+		void InitializeDrwatools(void)
+		{
+			this->map_area_graph = MapArea->CreateGraphics();
+			this->black_line = gcnew Pen(Color::Black);
+			this->red_point = gcnew SolidBrush(Color::Red);
+		}
 		
 	private: System::Void MapArea_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) 
 	{
@@ -312,13 +318,11 @@ namespace Project1 {
 		this->StartBox->Items->AddRange(gcnew cli::array< System::Object^  >(1) { L"Köln" });
 		this->DestinationBox->Items->AddRange(gcnew cli::array< System::Object^  >(1) { StartBox->SelectedItem });
 		
-		Graphics^ pg = MapArea->CreateGraphics();
-		Pen^ pen1 = gcnew Pen(Color::Black);
-		SolidBrush^ sb1 = gcnew SolidBrush(Color::Red);
+	
 		
-		pg->DrawLine(pen1, 55 , 55, 105, 255);
+		/*pg->DrawLine(pen1, 55 , 55, 105, 255);
 		pg->FillEllipse(sb1,50, 50 , 10, 10);
-		pg->FillEllipse(sb1, 100, 250, 10, 10);
+		pg->FillEllipse(sb1, 100, 250, 10, 10);*/
 		label3->Location = System::Drawing::Point(60, 50);
 		this->label3->Text = L"Berlin";
 		

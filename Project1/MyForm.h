@@ -43,7 +43,7 @@ namespace Project1 {
 			
 			this->map_area_graph ->FillEllipse(red_point, x, y, 10, 10);
 		}
-		void drawpointandlabel(int x, int y, System::String^label_name)
+		void drawpointandlabel(int x, int y, System::String^ label_name)
 		{
 			this->drawpoint(x, y);			
 			map_area_graph->DrawString(label_name, this->lable_font, this->text_brush,float (x+10),float (y));
@@ -62,6 +62,7 @@ namespace Project1 {
 				delete components;
 			}
 		}
+
 	private: System::Windows::Forms::Panel^ MapArea;
 	private: System::Windows::Forms::CheckBox^ AsternCheckBox;
 	private: System::Windows::Forms::CheckBox^ DijkstraCheckBox;

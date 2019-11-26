@@ -14,7 +14,7 @@ using namespace std;
 int main()
 {
 	Windows::Forms::Application::EnableVisualStyles();
-	Windows::Forms::Application::Run(gcnew Project1::MyForm(5));	
-	Citys berlin(200, 60, "Berlin");
+	Windows::Forms::Application::Run(gcnew Project1::MyForm());	
 	return 0;
+
 }
